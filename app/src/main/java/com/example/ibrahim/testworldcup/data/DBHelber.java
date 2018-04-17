@@ -42,6 +42,7 @@ import static com.example.ibrahim.testworldcup.data.Contract.ISO2;
 import static com.example.ibrahim.testworldcup.data.Contract.LAT;
 import static com.example.ibrahim.testworldcup.data.Contract.LNG;
 import static com.example.ibrahim.testworldcup.data.Contract.NAME;
+import static com.example.ibrahim.testworldcup.data.Contract.RSULT;
 import static com.example.ibrahim.testworldcup.data.Contract.STADIUM;
 import static com.example.ibrahim.testworldcup.data.Contract.TB_GROUPS;
 import static com.example.ibrahim.testworldcup.data.Contract.TB_MATCHES;
@@ -78,6 +79,7 @@ public class DBHelber extends SQLiteOpenHelper {
     final String CREATE_TB_TEAMS =
             "CREATE TABLE " + TB_TEAMES + "(" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                    RSULT+ " INTEGER null , " +
                     NAME + " VARCHAR(100) NOT NULL  ,  " +
                     FLAG + " VARCHAR(400) NOT NULL  ,  " +
                     ISO2 + " VARCHAR(10) NOT NULL  " +")";

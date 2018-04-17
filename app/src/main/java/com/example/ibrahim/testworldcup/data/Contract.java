@@ -44,6 +44,7 @@ public class Contract {
     public static final String ICON="icon";
 
     public static final String TB_TEAMES="tb_teames";
+    public static final String RSULT="results";
     public static final String ISO2="iso2";
     public static final String FLAG="flag";
 
