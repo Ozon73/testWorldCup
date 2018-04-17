@@ -9,7 +9,6 @@
     android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +23,24 @@
             android:padding="10dp"
             android:background="@drawable/transparent_light_green"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="40dp"
+                android:text="ubdate result"
+                android:id="@+id/btnHome"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ubdate result"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/btnAway"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -176,7 +193,57 @@
 
 
             </LinearLayout>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:padding="8dp"
+                android:background="@color/colorBlack"
+                android:textColor="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:text="COMPARE ID FROM FIREBASE WiTH ID FROM SQLITE"/>
+            <LinearLayout
+                android:id="@+id/linecompare"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:background="@color/colorBlack"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="id from sqlite="
+                    android:textAlignment="textEnd"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/ifromsqlite"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="id"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorWhite"
+                    android:background="@color/colorBlack"
+                    android:gravity="start|bottom" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="id from firebase="
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/colorWhite"
+                    android:background="@color/colorBlack"/>
+                <TextView
+                    android:id="@+id/idfromfire"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="id"
+                    android:layout_weight="1"
+                    android:gravity="start|bottom"
+                    android:textColor="@color/colorWhite"
+                    android:background="@color/colorBlack"/>
+            </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

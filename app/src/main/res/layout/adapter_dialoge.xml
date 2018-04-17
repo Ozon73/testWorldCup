@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/lrlr"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tttt"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubdate Value for :"/>
+        <TextView
+            android:id="@+id/txtubdate"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:textAlignment="center"
+            android:gravity="start"
+         android:layout_toRightOf="@+id/tttt"
+            android:textSize="17dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/etEditValue"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorAccent"
+        android:gravity="start|center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lrlr"
+        android:inputType="numberSigned"
+        android:textSize="17dp"
+        android:width="200dp"
+        android:text=""
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_below="@+id/etEditValue"
+    android:layout_height="wrap_content">
+        <TextView
+            android:onClick="ChoosePathClicked"
+            android:id="@+id/txtOk"
+            android:textColor="@color/colorBlack"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:text="Ok"/>
+        <TextView
+            android:onClick="ChoosePathClicked"
+            android:id="@+id/txtCancel"
+            android:textColor="@color/colorBlack"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_below="@+id/etEditValue"
+            android:layout_toRightOf="@+id/txtOk"
+            android:textSize="17dp"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:text="Cancel"/>
+</LinearLayout>
+</RelativeLayout>

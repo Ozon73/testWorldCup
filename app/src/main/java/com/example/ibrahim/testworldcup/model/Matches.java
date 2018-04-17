@@ -1,6 +1,10 @@
 package com.example.ibrahim.testworldcup.model;
 
 public class Matches {
+    long id;
+
+
+
     private   String type;
     private String date;
     private String finished;
@@ -12,7 +16,8 @@ public class Matches {
     private String lat;
     private String lng;
 
-    public Matches (String type, String date, String finished, String home_team, String away_team, String home_team_flag, String away_team_flag, String city, String lat, String lng, String channels) {
+    public Matches (long id,String type, String date, String finished, String home_team, String away_team, String home_team_flag, String away_team_flag, String city, String lat, String lng, String channels) {
+     this.id=id;
         this.type = type;
         this.date = date;
         this.finished = finished;
@@ -25,7 +30,13 @@ public class Matches {
         this.lng = lng;
         this.channels = channels;
     }
+    public long getId () {
+        return id;
+    }
 
+    public void setId (long id) {
+        this.id = id;
+    }
     public String getType () {
         return type;
     }

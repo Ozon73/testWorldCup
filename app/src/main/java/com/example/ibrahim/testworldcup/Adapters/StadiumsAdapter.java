@@ -29,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by ibrahim on 14/04/18.
  */
 
-public class StadiumsAdapter  extends RecyclerView.Adapter<StadiumsAdapter.MyHoder> {
+public class StadiumsAdapter { /*extends RecyclerView.Adapter<StadiumsAdapter.MyHoder> {
     List<Stadiums> list;
     Context context;
 
@@ -44,7 +44,7 @@ public class StadiumsAdapter  extends RecyclerView.Adapter<StadiumsAdapter.MyHod
 
     @Override
     public StadiumsAdapter.MyHoder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.list_test, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.list_item_main, parent, false);
         view.setLayoutParams(new RecyclerView.LayoutParams( RecyclerView.LayoutParams.
                 MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
 
@@ -99,7 +99,7 @@ public class StadiumsAdapter  extends RecyclerView.Adapter<StadiumsAdapter.MyHod
 
 
         }
-    }
+    }*/
 
 }
 

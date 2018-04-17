@@ -54,8 +54,72 @@ import static com.example.ibrahim.testworldcup.data.Contract.TYPE;
 
 public class DBHelber extends SQLiteOpenHelper {
 
-    private static final int SCHEMA = 2;
+    private static final int SCHEMA = 3;
     private static final String TAG = DBHelber.class.getSimpleName ();
+
+
+    final String CREATE_TB_STADIUMS =
+            "CREATE TABLE " + TB_STADIUMS + "(" +
+                    ID + " INTEGER PRIMARY KEY , " +
+                    CITY + " VARCHAR(100) NOT NULL, " +
+                    NAME + " VARCHAR(100) NOT NULL, " +
+                    LAT + " VARCHAR(100) NOT NULL, " +
+                    LNG + " VARCHAR(100) NOT NULL " +")";
+
+
+    final String CREATE_TV_CHANNELS =
+            "CREATE TABLE " + TB_TV_CHANNELS + "(" +
+                    ID + " INTEGER PRIMARY KEY , " +
+                    NAME + " VARCHAR(100) NOT NULL, " +
+                    ICON + " VARCHAR(100) NOT NULL " +")";
+
+
+
+    final String CREATE_TB_TEAMS =
+            "CREATE TABLE " + TB_TEAMES + "(" +
+                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                    NAME + " VARCHAR(100) NOT NULL  ,  " +
+                    FLAG + " VARCHAR(400) NOT NULL  ,  " +
+                    ISO2 + " VARCHAR(10) NOT NULL  " +")";
+
+    final String CREATE_GROUPS=
+            "CREATE TABLE " + TB_GROUPS + "(" +
+                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                    GROUP_A + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_B + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_C + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_D + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_E + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_F + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_G + " VARCHAR(10) NOT NULL  ,  " +
+                    GROUP_H+ " VARCHAR(10) NOT NULL  " +")";
+
+    final String CREATE_TB_MATCHES =
+            "CREATE TABLE " + TB_MATCHES + "(" +
+                    ID + " INTEGER  unique  , " +
+                    NAME + " INTEGER   , " +
+                    TYPE + " VARCHAR(10) NOT NULL  ," +
+                    HOME_RESULT+" INTEGER , "+
+                    AWAY_RESULT+" INTEGER , "+
+                    DATE+" DATE , "+
+                    DAY+" DATE , "+
+                    FINISHED + " VARCHAR(10) NOT NULL  ," +
+                    HOME_TEAM+" INTEGER, "+
+                    AWAY_TEAM+" INTEGER, "+
+                    HOME_TEAM_FLAG+" INTEGER, "+
+                    AWAY_TEAM_FLAG+" INTEGER, "+
+                    STADIUM+" INTEGER, "+
+                    CHANNELS+" INTEGER, "+
+                    TODAY+" DATE , "+
+                    "FOREIGN KEY("+HOME_TEAM+") REFERENCES "+TB_TEAMES+" ("+ID+"), "+
+                    "FOREIGN KEY("+AWAY_TEAM+") REFERENCES "+TB_TEAMES+" ("+ID+") ,"+
+                    "FOREIGN KEY("+HOME_TEAM_FLAG+") REFERENCES "+TB_TEAMES+" ("+ID+"), "+
+                    "FOREIGN KEY("+AWAY_TEAM_FLAG+") REFERENCES "+TB_TEAMES+" ("+ID+"), "+
+                    "FOREIGN KEY("+STADIUM+") REFERENCES "+TB_STADIUMS+" ("+ID+"), "+
+                    "FOREIGN KEY("+CHANNELS+") REFERENCES "+TB_TV_CHANNELS+" ("+ID+")"+")";
+
+
+
 
     public DBHelber (Context context) {
         super (context, DATABASE_NAME, null, SCHEMA);
@@ -64,70 +128,7 @@ public class DBHelber extends SQLiteOpenHelper {
     @Override
     public void onCreate (SQLiteDatabase sqLiteDatabase) {
         //TODO creating table of users
-   final String CREATE_TB_STADIUMS =
-                "CREATE TABLE " + TB_STADIUMS + "(" +
-                        ID + " INTEGER PRIMARY KEY , " +
-                        CITY + " VARCHAR(100) NOT NULL, " +
-                        NAME + " VARCHAR(100) NOT NULL, " +
-                        LAT + " VARCHAR(100) NOT NULL, " +
-                        LNG + " VARCHAR(100) NOT NULL " +")";
 
-
-        final String CREATE_TV_CHANNELS =
-                "CREATE TABLE " + TB_TV_CHANNELS + "(" +
-                        ID + " INTEGER PRIMARY KEY , " +
-                        NAME + " VARCHAR(100) NOT NULL, " +
-                        ICON + " VARCHAR(100) NOT NULL " +")";
-
-
-
-        final String CREATE_TB_TEAMS =
-                "CREATE TABLE " + TB_TEAMES + "(" +
-                        ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                        NAME + " VARCHAR(100) NOT NULL  ,  " +
-                        FLAG + " VARCHAR(400) NOT NULL  ,  " +
-                        ISO2 + " VARCHAR(10) NOT NULL  " +")";
-
-        final String CREATE_GROUPS=
-                "CREATE TABLE " + TB_GROUPS + "(" +
-                        ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                        GROUP_A + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_B + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_C + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_D + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_E + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_F + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_G + " VARCHAR(10) NOT NULL  ,  " +
-                        GROUP_H+ " VARCHAR(10) NOT NULL  " +")";
-
-        final String CREATE_TB_MATCHES =
-                "CREATE TABLE " + TB_MATCHES + "(" +
-                        ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                        TYPE + " VARCHAR(10) NOT NULL  ," +
-                        HOME_RESULT+" INTEGER , "+
-                        AWAY_RESULT+" INTEGER , "+
-                        DATE+" DATE , "+
-                        DAY+" DATE , "+
-                        FINISHED + " VARCHAR(10) NOT NULL  ," +
-                        HOME_TEAM+" INTEGER, "+
-                        AWAY_TEAM+" INTEGER, "+
-                        HOME_TEAM_FLAG+" INTEGER, "+
-                        AWAY_TEAM_FLAG+" INTEGER, "+
-                        STADIUM+" INTEGER, "+
-                        CHANNELS+" INTEGER, "+
-                        TODAY+" DATE , "+
-        "FOREIGN KEY("+HOME_TEAM+") REFERENCES "+TB_TEAMES+" ("+ID+"), "+
-                        "FOREIGN KEY("+AWAY_TEAM+") REFERENCES "+TB_TEAMES+" ("+ID+") ,"+
-                        "FOREIGN KEY("+HOME_TEAM_FLAG+") REFERENCES "+TB_TEAMES+" ("+ID+"), "+
-                       "FOREIGN KEY("+AWAY_TEAM_FLAG+") REFERENCES "+TB_TEAMES+" ("+ID+"), "+
-                        "FOREIGN KEY("+STADIUM+") REFERENCES "+TB_STADIUMS+" ("+ID+"), "+
-                        "FOREIGN KEY("+CHANNELS+") REFERENCES "+TB_TV_CHANNELS+" ("+ID+")"+")";
-
-
-
-                        //  FINISHED + " EXT CHECK( pType IN ('yes','no') ) NOT NULL DEFAULT  'no' "+")";
-
-//        FINISHED + " EXT CHECK( pType IN ('yes','no') ) NOT NULL DEFAULT 'no')";
         sqLiteDatabase.execSQL (CREATE_TB_STADIUMS);
         sqLiteDatabase.execSQL (CREATE_TV_CHANNELS);
         sqLiteDatabase.execSQL (CREATE_TB_TEAMS);
@@ -139,7 +140,16 @@ public class DBHelber extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade (SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        throw new UnsupportedOperationException ("This shouldn't happen yet!");
+        if (i < 2) {
+            sqLiteDatabase.execSQL (CREATE_TB_STADIUMS);
+            sqLiteDatabase.execSQL (CREATE_TV_CHANNELS);
+            sqLiteDatabase.execSQL (CREATE_TB_TEAMS);
+            sqLiteDatabase.execSQL (CREATE_GROUPS);
+            sqLiteDatabase.execSQL (CREATE_TB_MATCHES);
+        }
+        if (i < 3) {
+      //     sqLiteDatabase.execSQL (CREATE_TB_MATCHES);
+        }
 
     }
     //add to all contentnts of stadiums in sqlite
@@ -186,7 +196,7 @@ public class DBHelber extends SQLiteOpenHelper {
         Log.d( TAG, "add TB_TEAMES  list inserted into sqlite: " + query );
         db.close();
     }
-    public void addMathesList(long id,  String type, long home_team,
+    public void addMathesList(long id, long name, String type, long home_team,
                               long away_team, long home_result,long away_result,String date,String day, long stadium,long channels, boolean finished) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -201,6 +211,8 @@ public class DBHelber extends SQLiteOpenHelper {
 
 
         values.put( ID, id );
+        values.put( NAME, name );
+
         values.put( TYPE, type );
         values.put( HOME_TEAM, home_team );
         values.put( AWAY_TEAM, away_team );
@@ -289,6 +301,7 @@ public class DBHelber extends SQLiteOpenHelper {
     public Cursor getCommingMatches() {
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT         \n" +
+               " k.id as 'id',"+
                 "k.type as 'type',\n" +
                 "k.date as 'date',\n" +
                 "k.finished as 'finished',\n" +

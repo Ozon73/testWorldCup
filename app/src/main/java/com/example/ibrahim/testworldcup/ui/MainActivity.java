@@ -28,6 +28,7 @@ import static com.example.ibrahim.testworldcup.data.Contract.DATE_FORMAT_NOW;
 import static com.example.ibrahim.testworldcup.data.Contract.FINISHED;
 import static com.example.ibrahim.testworldcup.data.Contract.HOME_TEAM;
 import static com.example.ibrahim.testworldcup.data.Contract.HOME_TEAM_FLAG;
+import static com.example.ibrahim.testworldcup.data.Contract.ID;
 import static com.example.ibrahim.testworldcup.data.Contract.LAT;
 import static com.example.ibrahim.testworldcup.data.Contract.LNG;
 import static com.example.ibrahim.testworldcup.data.Contract.TYPE;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             Matches matches2;
             matches2 = new Matches(
+                    cursor.getLong ( cursor.getColumnIndex( ID ) ),
                     cursor.getString( cursor.getColumnIndex( TYPE ) ),
                    cursor.getString( cursor.getColumnIndex( DATE )),
                     cursor.getString( cursor.getColumnIndex( FINISHED ) ),

@@ -201,7 +201,9 @@ public class GetAllContents {
             public void onDataChange (DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    long id= snapshot.child("name").getValue(long.class);
+                    long id= snapshot.child("id").getValue(long.class);
+                    long nam= snapshot.child("name").getValue(long.class);
+
                     String type = snapshot.child("type").getValue(String.class);
                     long home_team= snapshot.child("home_team").getValue(long.class);
                     long away_team= snapshot.child("away_team").getValue(long.class);
@@ -216,7 +218,7 @@ public class GetAllContents {
                    long channels=3;// snapshot.child("channels").getValue(long.class);
                     boolean finished = snapshot.child("finished").getValue(boolean.class);
 
-                    mDbHelber.addMathesList (  id, type,  home_team,away_team,  home_result, away_result, date,day,  stadium, channels,  finished);
+                    mDbHelber.addMathesList (  id, nam,type,  home_team,away_team,  home_result, away_result, date,day,  stadium, channels,  finished);
                     Log.d (TAG, "value from firbaser : \n id" + id + "\n city :" + away_team);
                 }
 

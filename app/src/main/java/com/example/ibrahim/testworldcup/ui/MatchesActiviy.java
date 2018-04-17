@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MatchesActiviy extends AppCompatActivity {
 
     FirebaseDatabase database;
+
     DatabaseReference myRef ;
     List<Teams> list;
     RecyclerView recycle;
