@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String strDate =  mdformat.format(calendar.getTime());
         Log.v(TAG,"naw aday:\n"+strDate);
 
+
         matches.clear();
         Cursor cursor = mDbHelber.getMatchesByDayList(strDate.trim () );
         while (cursor.moveToNext()) {
