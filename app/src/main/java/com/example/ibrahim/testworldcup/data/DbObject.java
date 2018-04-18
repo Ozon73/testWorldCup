@@ -17,6 +17,7 @@ public class DbObject {
         dbHelper = new DBHelber( context );
         this.db = dbHelper.getReadableDatabase();
 
+
     }
 
     public SQLiteDatabase getDbConnection() {

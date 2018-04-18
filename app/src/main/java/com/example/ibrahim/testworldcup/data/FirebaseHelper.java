@@ -76,6 +76,7 @@ public class FirebaseHelper {
 
             }
 
+
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 

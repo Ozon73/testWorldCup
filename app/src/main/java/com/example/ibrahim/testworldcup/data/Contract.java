@@ -8,6 +8,7 @@ public class Contract {
 
     public static final String DATE_FORMATING = "yyyy-MM-dd'T'HH:mm:ssz";
 
+
     //TODO constants for SQlite database
     //database name
     public static final String TAG = "worldCup";

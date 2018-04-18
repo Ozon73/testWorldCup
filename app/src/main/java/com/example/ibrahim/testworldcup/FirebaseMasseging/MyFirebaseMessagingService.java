@@ -46,6 +46,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
            // mNotificationManager = new MyNotificationManager(getApplicationContext());
             Log.v(TAG, "Notification type : " + type);
 
+
        /*    //statement if the Notification com from user by passing the sort of type value
             if(type.contains (USER_MESSAGE)){
                 String from = data.getString ("from");

@@ -32,6 +32,7 @@ public class SharedPrefManager {
         return mInstance;
     }
 
+
     public boolean saveDeviceToken(String token){
         editor = pref.edit();
         editor.putString(TAG_TOKEN, token);

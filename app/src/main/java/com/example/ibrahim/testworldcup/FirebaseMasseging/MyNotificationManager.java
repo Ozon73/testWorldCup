@@ -21,6 +21,7 @@ public class MyNotificationManager {
     private static final int ACTION_IGNORE_PENDING_INTENT_ID = 14;
     private Context mCtx;
 
+
   /*  public MyNotificationManager(Context mCtx) {
         this.mCtx = mCtx;
     }
