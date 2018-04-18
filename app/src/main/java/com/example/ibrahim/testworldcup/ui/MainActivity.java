@@ -8,9 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
 import com.example.ibrahim.testworldcup.Adapters.MatchesAdapter;
 import com.example.ibrahim.testworldcup.R;
 import com.example.ibrahim.testworldcup.data.DBHelber;
+import com.example.ibrahim.testworldcup.data.SharedPrefManager;
 import com.example.ibrahim.testworldcup.model.Matches;
 import com.example.ibrahim.testworldcup.sync.GetAllContents;
 import java.util.Calendar;
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelber mDbHelber;
     RecyclerView RV;
 
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -57,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         getAllContents.getFBSTeams (this);
         getAllContents.getFBSMatches (this);
 
-
+        TextView ttt=findViewById (R.id.tokentxt);
+        ttt.setText (SharedPrefManager.getInstance (this).getDeviceToken ());
         mDbHelber=new DBHelber( this );
         matches=new ArrayList<> ();
         RV = (RecyclerView) findViewById( R.id.RV_main);

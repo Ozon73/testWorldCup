@@ -11,6 +11,10 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:id="@+id/RV_main"></android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tokentxt"/>
     <Button
         android:id="@+id/BtnGoMatches"
         android:layout_width="wrap_content"
