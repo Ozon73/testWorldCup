@@ -17,7 +17,7 @@ public class Matches {
     private String lng;
 
     public Matches (long id,String type, String date, String finished, String home_team, String away_team, String home_team_flag, String away_team_flag, String city, String lat, String lng, String channels) {
-     this.id=id;
+        this.id=id;
         this.type = type;
         this.date = date;
         this.finished = finished;

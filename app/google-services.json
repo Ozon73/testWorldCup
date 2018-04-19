@@ -1,27 +1,71 @@
 {
   "project_info": {
-    "project_number": "805849612778",
-    "firebase_url": "https://controler-f032e.firebaseio.com",
-    "project_id": "controler-f032e",
-    "storage_bucket": "controler-f032e.appspot.com"
+    "project_number": "587817311831",
+    "firebase_url": "https://worldcuptest-56a60.firebaseio.com",
+    "project_id": "worldcuptest-56a60",
+    "storage_bucket": "worldcuptest-56a60.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:805849612778:android:c30471a2b3967be6",
+        "mobilesdk_app_id": "1:587817311831:android:35df9eb630ab3403",
         "android_client_info": {
-          "package_name": "com.example.ibrahim.testworldcup"
+          "package_name": "com.example.ibrahim.testworldcup.ui.main"
         }
       },
       "oauth_client": [
         {
-          "client_id": "805849612778-r01el5poqqs1scmvie3uvvbkslun681v.apps.googleusercontent.com",
+          "client_id": "587817311831-108ak8d541n6gka9cr2ic0iuitd852ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ibrahim.testworldcup.ui.main",
+            "certificate_hash": "d00794e7d44811a50d90bfe7c58df647f4d6440f"
+          }
+        },
+        {
+          "client_id": "587817311831-net6ihjgc00piios7of3fjqk9l85o1f8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXiH9cLn68OMWzldo55Y9gZL8FIltxtnI"
+          "current_key": "AIzaSyDhUT1qrOIOcFAOnA1rr-nPZ2hF8Hfqhpg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587817311831-net6ihjgc00piios7of3fjqk9l85o1f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587817311831:android:bc031722d373adf6",
+        "android_client_info": {
+          "package_name": "jhkjl.hhkh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587817311831-net6ihjgc00piios7of3fjqk9l85o1f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhUT1qrOIOcFAOnA1rr-nPZ2hF8Hfqhpg"
         }
       ],
       "services": {
