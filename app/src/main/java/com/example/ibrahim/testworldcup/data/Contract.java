@@ -46,7 +46,7 @@ public class Contract {
     public static final String ICON="icon";
 
     public static final String TB_TEAMES="tb_teames";
-    public static final String RSULT="res";
+    public static final String RESULT="res";
     public static final String ISO2="iso2";
     public static final String FLAG="flag";
     public static final String POINT="po";
@@ -58,6 +58,21 @@ public class Contract {
     public static final String TEAM2="team2";
     public static final String TEAM3="team3";
     public static final String TEAM4="team4";
+    public static final String FLAG1="flag1";
+    public static final String FLAG2="flag2";
+    public static final String FLAG3="flag3";
+    public static final String FLAG4="flag4";
+    public static final String RESULT1="res1";
+    public static final String RESULT2="res2";
+    public static final String RESULT3="res3";
+    public static final String RESULT4="res4";
+    public static final String POINT1="po1";
+    public static final String POINT2="po2";
+    public static final String POINT3="po3";
+    public static final String POINT4="po4";
+
+
+
 
     public static final String TB_MATCHES="tb_matches";
     public static final String DAY="day";

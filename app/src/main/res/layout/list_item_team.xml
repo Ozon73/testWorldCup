@@ -85,7 +85,7 @@ android:background="@drawable/matches">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:text="id"
+            android:text="goals"
             android:layout_weight="1"
             android:textAlignment="center"
             />
@@ -98,11 +98,11 @@ android:background="@drawable/matches">
             android:textAlignment="center"
             />
         <TextView
-            android:id="@+id/id"
+            android:id="@+id/goals"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:text="id"
+            android:text="goals"
             android:layout_weight="1"
             android:textAlignment="center"
             />
@@ -121,7 +121,7 @@ android:background="@drawable/matches">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:text="iso2"
+            android:text="points"
             android:layout_weight="1"
             android:textAlignment="center"
             />
@@ -134,11 +134,11 @@ android:background="@drawable/matches">
             android:textAlignment="center"
             />
         <TextView
-            android:id="@+id/iso2"
+            android:id="@+id/points"
             android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
-        android:text="iso2"
+        android:text="points"
             android:layout_weight="1"
         android:textAlignment="center"
         />

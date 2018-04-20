@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+import static android.provider.BlockedNumberContract.BlockedNumbers.COLUMN_ID;
 import static com.example.ibrahim.testworldcup.data.Contract.AR_CITY;
 import static com.example.ibrahim.testworldcup.data.Contract.AR_NAME;
 import static com.example.ibrahim.testworldcup.data.Contract.AWAY_RESULT;
@@ -34,7 +36,7 @@ import static com.example.ibrahim.testworldcup.data.Contract.LAT;
 import static com.example.ibrahim.testworldcup.data.Contract.LNG;
 import static com.example.ibrahim.testworldcup.data.Contract.NAME;
 import static com.example.ibrahim.testworldcup.data.Contract.POINT;
-import static com.example.ibrahim.testworldcup.data.Contract.RSULT;
+import static com.example.ibrahim.testworldcup.data.Contract.RESULT;
 import static com.example.ibrahim.testworldcup.data.Contract.STADIUM;
 import static com.example.ibrahim.testworldcup.data.Contract.TB_GROUPS;
 import static com.example.ibrahim.testworldcup.data.Contract.TB_MATCHES;
@@ -53,7 +55,7 @@ public class DBHelber extends SQLiteOpenHelper {
 
     private static final int SCHEMA = 3;
     private static final String TAG = DBHelber.class.getSimpleName ();
-
+Context context;
 
     final String CREATE_TB_STADIUMS =
             "CREATE TABLE " + TB_STADIUMS + "(" +
@@ -78,7 +80,7 @@ public class DBHelber extends SQLiteOpenHelper {
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
                     NAME + " VARCHAR(20) NOT NULL, " +
                     AR_NAME + " VARCHAR(20) NOT NULL, " +
-                    RSULT+ " INTEGER NOT NULL , " +
+                    RESULT+ " INTEGER NOT NULL , " +
                     POINT+ " INTEGER NOT NULL , " +
                     FLAG + " VARCHAR(400)   NULL  ,  " +
                     ISO2 + " VARCHAR(10) NOT NULL  " +")";
@@ -86,6 +88,7 @@ public class DBHelber extends SQLiteOpenHelper {
     final String CREATE_GROUPS=
             "CREATE TABLE " + TB_GROUPS + "(" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                    NAME + " VARCHAR(2) NOT NULL, " +
                     TEAM1 + " VARCHAR(10) NOT NULL  ,  " +
                     TEAM2 + " VARCHAR(10) NOT NULL  ,  " +
                     TEAM3 + " VARCHAR(10) NOT NULL  ,  " +
@@ -124,6 +127,7 @@ public class DBHelber extends SQLiteOpenHelper {
 
     public DBHelber (Context context) {
         super (context, DATABASE_NAME, null, SCHEMA);
+        this.context=context;
     }
 
     @Override
@@ -193,7 +197,7 @@ public class DBHelber extends SQLiteOpenHelper {
         values.put( NAME, name );
         values.put( AR_NAME,ar_name );
         values.put( POINT, po );
-        values.put( RSULT, res );
+        values.put( RESULT, res );
   values.put( FLAG, flag );
         values.put( ISO2, iso2 );
         long query = db.insertWithOnConflict( TB_TEAMES, null, values, SQLiteDatabase.CONFLICT_REPLACE );
@@ -206,6 +210,7 @@ public class DBHelber extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put( ID, id );
+        values.put( NAME, name );
         values.put( TEAM1, name );
         values.put( TEAM1, t1 );
         values.put( TEAM2, t2 );
@@ -248,7 +253,62 @@ public class DBHelber extends SQLiteOpenHelper {
 
         db.close();
     }
+    //add total of goals for each team
+    public void addGoals(long id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "UPDATE tb_teames " +
+                "SET res = (SELECT total(d.home_result) " +
+                "                 FROM tb_matches d " +
+                "                 WHERE tb_teames.id = d.home_team " +
+                "                 ) " +
+                "WHERE EXISTS (SELECT d.home_result " +
+                "                 FROM tb_matches d " +
+                "                 WHERE tb_teames.id = d.home_team " +
+                "                   AND  tb_teames.id="+id+"" +
+                "                 );";
 
+        db.execSQL (sql);
+
+    }
+
+
+
+    public long  getIdTeamByName(String className) {
+        String query = "SELECT  "+ID+"  FROM " + TB_TEAMES + " WHERE "
+                + NAME + " = '" + className + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery(query, null);
+        if (res != null) {
+            if (res.moveToFirst()) {
+                do {
+                    return Long.parseLong(res.getString(res.getColumnIndex(ID))); // if your column name is rowid then replace id with rowid
+                } while (res.moveToNext());
+            }
+        } else {
+            Toast.makeText(context, "cursor is null", Toast.LENGTH_LONG).show();
+        }
+        return 0;
+    }
+
+    public long getHomeResult(long result ) {
+        // TODO Auto-generated method stub
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = new String[]{"res"};
+
+        String whereClause = ID  + " = ? ";
+        String[] whereArgs = { String.valueOf (result) };
+
+        Cursor c = db.query(TB_TEAMES, columns, whereClause, whereArgs, null, null, null);
+        if(c!=null){
+            c.moveToFirst();
+            long res = Long.parseLong (c.getString( c.getColumnIndex("res")));
+            return res;
+        }
+
+        return 0;
+
+    }
     public Cursor getMatchesListbyvalue() {
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM "+TB_MATCHES+"";
@@ -277,7 +337,42 @@ public class DBHelber extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(sql, null);
         return c;
     }
+    public Cursor getTeamList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM "+TB_TEAMES;
 
+        Cursor c = db.rawQuery(sql, null);
+        return c;
+    }
+    public Cursor getGroupList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = " SELECT\n" +
+                " k.id as 'id',k.name as 'name',\n" +
+                " m1.name as 'team1',m2.name as 'team2', m3.name as 'team3',m4.name as 'team4',\n" +
+                " f1.flag as 'flag1',f2.flag as 'flag2', f3.flag as 'flag3',f4.flag as 'flag4',\n" +
+                " r1.res as 'res1',r2.res as 'res2', r3.res as 'res3',r4.res as 'res4',\n" +
+                " p1.po as 'po1',p2.po as 'po2', p3.po as 'po3',p4.po as 'po4'\n" +
+                " FROM tb_groups as k\n" +
+                " INNER JOIN tb_teames AS m1 ON m1.id=k.team1\n" +
+                " INNER JOIN tb_teames AS m2 ON m2.id=k.team2\n" +
+                " INNER JOIN tb_teames AS m3 ON m3.id=k.team3\n" +
+                " INNER JOIN tb_teames AS m4 ON m4.id=k.team4\n" +
+                " INNER JOIN tb_teames AS f1 ON f1.id=k.team1\n" +
+                " INNER JOIN tb_teames AS f2 ON f2.id=k.team2\n" +
+                " INNER JOIN tb_teames AS f3 ON f3.id=k.team3\n" +
+                " INNER JOIN tb_teames AS f4 ON f4.id=k.team4\n" +
+                " INNER JOIN tb_teames AS r1 ON r1.id=k.team1\n" +
+                " INNER JOIN tb_teames AS r2 ON r2.id=k.team2\n" +
+                " INNER JOIN tb_teames AS r3 ON r3.id=k.team3\n" +
+                " INNER JOIN tb_teames AS r4 ON r4.id=k.team4\n" +
+                " INNER JOIN tb_teames AS p1 ON p1.id=k.team1\n" +
+                " INNER JOIN tb_teames AS p2 ON p2.id=k.team2\n" +
+                " INNER JOIN tb_teames AS p3 ON p3.id=k.team3\n" +
+                " INNER JOIN tb_teames AS p4 ON p4.id=k.team4 ";
+
+        Cursor c = db.rawQuery(sql, null);
+        return c;
+    }
 
     public Cursor getMatchesByDayList(String now) {
         SQLiteDatabase db = this.getReadableDatabase();

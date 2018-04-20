@@ -5,10 +5,23 @@ package com.example.ibrahim.testworldcup.model;
  */
 
 public class Teams {
+    long  id;
     String name;
-    String iso2;
+    String ar_name;
+    long res;
+    long po;
     String flag;//
-    Long  id;
+    String iso2;
+
+    public Teams (long id, String name, String ar_name, long res, long po, String flag, String iso2) {
+        this.id = id;
+        this.name = name;
+        this.ar_name = ar_name;
+        this.res = res;
+        this.po = po;
+        this.flag = flag;
+        this.iso2 = iso2;
+    }
 
     public String getName () {
         return name;
@@ -16,6 +29,30 @@ public class Teams {
 
     public void setName (String name) {
         this.name = name;
+    }
+
+    public String getAr_name () {
+        return ar_name;
+    }
+
+    public void setAr_name (String ar_name) {
+        this.ar_name = ar_name;
+    }
+
+    public long getRes () {
+        return res;
+    }
+
+    public void setRes (long res) {
+        this.res = res;
+    }
+
+    public long getPo () {
+        return po;
+    }
+
+    public void setPo (long po) {
+        this.po = po;
     }
 
     public String getIso2 () {

@@ -55,64 +55,7 @@ public class GetAllContents {
 
     }
 
-    /*   public void getMatches(Context context) {
 
-           mApiService.GetMatches ("yes")
-                   .enqueue(new Callback<ResponseBody>() {
-                       @Override
-                       public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                           if (response.isSuccessful()){
-
-                               try {
-                                   String remoteResponse=response.body().string();
-
-                                   Log.d("JSONDR", remoteResponse);
-
-                                   JSONObject jsonRESULTS = new JSONObject(remoteResponse);
-                                   if (jsonRESULTS.getString("error").equals("false")){
-                                   String TeamA = jsonRESULTS.getString("TeamA");
-                                     String TeamB = jsonRESULTS.getString("TeamB");
-                             //          JSONObject user = jsonRESULTS.getJSONObject("matches");
-                                     //  String TeamA = user.getString("TeamA");
-                                     //  String TeamB = user.getString("TeamB");
-
-                             //  String TeamA = jsonRESULTS.getJSONObject("matches").getString("TeamA");
-                                //  String TeamB = jsonRESULTS.getJSONObject("matches").getString("TeamB");
-                                       String error_message = jsonRESULTS.getString("error_msg");
-                                       mDbHelber.addMathesList ( TeamA, TeamB);
-
-                                       Log.i("TeamssValue", "["+ TeamA+"]");
-                                      // Log.e("debuguser", name);
-                                     //  Log.v("TeamssValue", "TeamA> "+TeamA );
-
-                                       Log.v("TeamssValue", "TeamA > "+TeamA );
-
-                                       Log.e("debug", "succeess: ERROR > "+error_message );
-                                   } else {
-                                       // Jika login gagal
-                                       Log.e("debug", "onFailure: ERROR > " );
-                                       String error_message = jsonRESULTS.getString("error_msg");
-
-                                       Log.e("debug", "noAcount: ERROR > "+error_message );
-
-                                   }
-                               } catch (JSONException e) {
-                                   e.printStackTrace();
-                               } catch (IOException e) {
-                                   e.printStackTrace();
-                               }
-                           } else {
-                           }
-                       }
-
-                       @Override
-                       public void onFailure(Call<ResponseBody> call, Throwable t) {
-                           Log.e("debug", "onFailure: ERROR > " + t.toString());
-                       }
-                   });
-
-       }
-   */
     public void getFBStaduims(Context context) {
         myRef.child ("stadiums").child ("stadiums").addValueEventListener (new ValueEventListener () {
 

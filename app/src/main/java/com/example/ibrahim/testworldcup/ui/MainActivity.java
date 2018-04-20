@@ -2,24 +2,22 @@ package com.example.ibrahim.testworldcup.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.ibrahim.testworldcup.Adapters.MatchesAdapter;
 import com.example.ibrahim.testworldcup.R;
 import com.example.ibrahim.testworldcup.data.DBHelber;
-import com.example.ibrahim.testworldcup.data.SharedPrefManager;
 import com.example.ibrahim.testworldcup.model.Matches;
 import com.example.ibrahim.testworldcup.sync.GetAllContents;
-import java.util.Calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static com.example.ibrahim.testworldcup.data.Contract.AWAY_TEAM;
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     DBHelber mDbHelber;
     RecyclerView RV;
 
-
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -56,14 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         getAllContents=new GetAllContents (this);
+        getAllContents.getFBSGroups (this);
+
         getAllContents.getFBStaduims (this);
         getAllContents.getFBSTvChannel (this);
         getAllContents.getFBSTeams (this);
         getAllContents.getFBSMatches (this);
 
-        TextView ttt=findViewById (R.id.tokentxt);
-        ttt.setText (SharedPrefManager.getInstance (this).getDeviceToken ());
-        mDbHelber=new DBHelber( this );
+
+        mDbHelber=new DBHelber ( this );
         matches=new ArrayList<> ();
         RV = (RecyclerView) findViewById( R.id.RV_main);
         RV.setHasFixedSize(true);
@@ -80,7 +78,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity (intent);
             }
         });
+        findViewById (R.id.BtnGoTeams).setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick (View view) {
+                Intent intent = new Intent (MainActivity.this, TeamsActivity.class);
+                startActivity (intent);
+            }
+        });
 
+        findViewById (R.id.BtnGoGroup).setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick (View view) {
+                Intent intent = new Intent (MainActivity.this, GroupActivity.class);
+                startActivity (intent);
+            }
+        });
     }
     private void displayOfline(){
         Calendar calendar = Calendar.getInstance();
@@ -88,15 +100,14 @@ public class MainActivity extends AppCompatActivity {
         String strDate =  mdformat.format(calendar.getTime());
         Log.v(TAG,"naw aday:\n"+strDate);
 
-
         matches.clear();
         Cursor cursor = mDbHelber.getMatchesByDayList(strDate.trim () );
         while (cursor.moveToNext()) {
             Matches matches2;
-            matches2 = new Matches(
+            matches2 = new Matches (
                     cursor.getLong ( cursor.getColumnIndex( ID ) ),
                     cursor.getString( cursor.getColumnIndex( TYPE ) ),
-                   cursor.getString( cursor.getColumnIndex( DATE )),
+                    cursor.getString( cursor.getColumnIndex( DATE )),
                     cursor.getString( cursor.getColumnIndex( FINISHED ) ),
                     cursor.getString( cursor.getColumnIndex( HOME_TEAM ) ),
                     cursor.getString( cursor.getColumnIndex( AWAY_TEAM ) ),
